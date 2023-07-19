@@ -1,7 +1,10 @@
 # SpectreSandboxing
 
+**The changes here are just some unneeded compilation in the Makefile and two subrepos**
+
 This is the top level repo for the paper [Swivel: Hardening WebAssembly against Spectre](https://www.usenix.org/conference/usenixsecurity21/presentation/narayan) published at USENIX 2021
 in which we demonstrate protecting Wasm code from Spectre attacks.
+
 
 This repo will download and build all tools used in the paper, such as modified compilers, and benchmarks.
 
