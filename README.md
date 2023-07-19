@@ -50,9 +50,10 @@ so this will take a while.
 
 **[sfispectre_webserver](https://github.com/PLSysSec/sfispectre_webserver.git)** - Our macrobenchmark of Wasm web services that measures the overhead of using Swivel.
 
-**[safeside](https://github.com/PLSysSec/safeside.git)** - Our modifications of safeside to show that Spectre proof-of-concepts of PHT and RSB work in Wasm also.
 
-**[swivel-btb-exploit](https://github.com/PLSysSec/swivel-btb-exploit.git)** - Our hand written proof-of-concept that shows BTB Spectre attacks work in Wasm.
+**[safeside (wasm-mutate added)](https://github.com/Jacarte/safeside.git)** - Our modifications of safeside to show that Spectre proof-of-concepts of PHT and RSB work in Wasm also.
+
+**[swivel-btb-exploit (wasm-mutate added)](https://github.com/Jacarte/swivel-btb-exploit.git)** - Our hand written proof-of-concept that shows BTB Spectre attacks work in Wasm.
 
 ## Running benchmarks/proof-of-concepts
 

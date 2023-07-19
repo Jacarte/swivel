@@ -18,7 +18,7 @@ build_repros run_pht_breakout_repro run_btb_breakout_repro run_btb_poison_repro 
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing btbflush-module spectresfi_webserver node_modules wrk wabt-1.0.19-ubuntu lucet-spectre-repro safeside swivel-btb-exploit wasi-sdk-custom
+DIRS=rustc-cet rust_libloading_aslr sfi-spectre-testing btbflush-module spectresfi_webserver node_modules wrk wabt-1.0.19-ubuntu lucet-spectre-repro safeside swivel-btb-exploit wasi-sdk-custom
 
 CURR_DIR := $(shell realpath ./)
 
@@ -112,10 +112,10 @@ lucet-spectre-repro:
 	cd $@ && git submodule update --init --recursive
 
 safeside:
-	git clone https://github.com/PLSysSec/safeside.git $@
+	git clone https://github.com/Jacarte/safeside.git $@
 
 swivel-btb-exploit:
-	git clone https://github.com/PLSysSec/swivel-btb-exploit.git $@
+	git clone https://github.com/Jacarte/swivel-btb-exploit.git $@
 
 wasi-sdk-custom:
 	git clone https://github.com/PLSysSec/wasi-sdk.git $@
@@ -308,8 +308,8 @@ build_rustc:
 	rustup toolchain link rust-cet ./out/rust_build
 
 build_lucet_nocet: rust_libloading_aslr
-	cd lucet-spectre && cargo build
-	cd lucet-spectre && cargo build --release
+	cd lucet-spectre  && cargo build
+	cd lucet-spectre  && cargo build --release
 
 build_lucet: out/rust_build/bin/rustc build_lucet_nocet
 	cd lucet-spectre && \
@@ -328,15 +328,15 @@ build_lucet: out/rust_build/bin/rustc build_lucet_nocet
 build_lucet_repro:
 	cd lucet-spectre-repro && cargo build --release
 
-build_sanity_test: install_deps build_lucet
-	mkdir -p ./out
-	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing build -j8
+# build_sanity_test: install_deps build_lucet
+#	mkdir -p ./out
+#	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing build -j8
 
 # build_sanity_test_nocet: install_deps
-# 	mkdir -p ./out
-# 	cd lucet-spectre && cargo build
-# 	cp -r lucet-spectre/target lucet-spectre/target-cet
-# 	$(MAKE) -C sfi-spectre-testing build -j8
+#	mkdir -p ./out
+#	cd lucet-spectre && cargo build
+#	cp -r lucet-spectre/target lucet-spectre/target-cet
+#	$(MAKE) -C sfi-spectre-testing build -j8
 
 run_sanity_test:
 	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing test
@@ -344,7 +344,7 @@ run_sanity_test:
 run_sanity_test_nocet:
 	$(MAKE) -C sfi-spectre-testing test
 
-build_sightglass: install_deps build_lucet
+build_sightglass: install_deps  # build_lucet
 	$(MAKE) -C lucet-spectre/benchmarks/shootout clean
 	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout build -j8
 
@@ -468,4 +468,4 @@ run_btb_poison_repro:
 run_rsb_poison_repro:
 	cd ./safeside/build-lucet/build && ./run.sh ret2spec_sa
 
-build: get_source out/rust_build/bin/rustc build_lucet build_lucet_nocet build_lucet_repro build_sanity_test build_sightglass build_sightglass_nocet build_transitions_benchmark build_macro_benchmark build_macro_benchmark_nocet build_repros
+build: get_source out/rust_build/bin/rustc  build_lucet_repro  build_repros
